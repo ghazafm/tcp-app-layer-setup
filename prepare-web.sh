@@ -6,7 +6,7 @@ webcontainer="$1"
 
 sudo docker cp apk-server "$webcontainer":/root/
 sudo docker exec -w /root "$webcontainer" \
-  sh -c 'apk add --no-cache --allow-untrusted --repositories-file /dev/null apk-server/apache2/*.apk'
+  sh -c 'apk add --no-cache --allow-untrusted --repositories-file /dev/null /root/apk-server/apache2/*.apk'
 
 
 sudo docker exec "$webcontainer" sh -c 'mkdir -p /var/www/localhost/htdocs'
