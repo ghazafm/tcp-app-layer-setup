@@ -3,7 +3,6 @@
 # usage: prepare-web.sh [nama-container-host-server]
 # contoh: prepare-web.sh 2_GENEhost
 webcontainer="$1"
-echo "Menyiapkan web server pada container $webcontainer ..."
 
 sudo docker cp apk-server "$webcontainer":/root/
 sudo docker exec -w /root "$webcontainer" \
