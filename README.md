@@ -14,3 +14,16 @@ The "apk-server" and "apk-client" directories contains unmodified .apk file to b
    1. `prepare-web.sh` takes exactly one argument which is the server you want to install a webserver on
    2. `prepare-client.sh` by default installs on all container in the AS
 
+
+
+Sementara
+setup curl:
+sudo curl -L   https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64   -o /opt/curl-static
+
+sudo chmod +x /opt/curl-static
+
+for c in $(docker ps --format '{{.Names}}' --filter "ancestor=miniinterneteth/d_host"); do
+  echo "Injecting curl into $c"
+  docker cp /opt/curl-static "$c":/usr/local/bin/curl
+  docker exec "$c" chmod +x /usr/local/bin/curl
+done
